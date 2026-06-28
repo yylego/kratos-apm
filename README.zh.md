@@ -8,9 +8,11 @@
 # kratos-apm
 
 <!-- TEMPLATE (ZH) BEGIN: LANGUAGE NAVIGATION -->
+
 ## 英文文档
 
 [ENGLISH README](README.md)
+
 <!-- TEMPLATE (ZH) END: LANGUAGE NAVIGATION -->
 
 Kratos 框架的 Elastic APM 中间件，提供分布式追踪和性能监控能力。
@@ -26,6 +28,7 @@ Kratos 框架的 Elastic APM 中间件，提供分布式追踪和性能监控能
 ## 依赖版本
 
 本项目使用 Elastic APM v2:
+
 ```
 go.elastic.co/apm/v2
 ```
@@ -79,8 +82,8 @@ func main() {
 package main
 
 import (
-    "github.com/go-kratos/kratos/v2"
-    "github.com/go-kratos/kratos/v2/transport/http"
+    "github.com/go-kratos/kratos/v3"
+    "github.com/go-kratos/kratos/v3/transport/http"
     "github.com/yylego/kratos-apm/apmkratos"
 )
 
@@ -112,8 +115,8 @@ func main() {
 package main
 
 import (
-    "github.com/go-kratos/kratos/v2"
-    "github.com/go-kratos/kratos/v2/transport/grpc"
+    "github.com/go-kratos/kratos/v3"
+    "github.com/go-kratos/kratos/v3/transport/grpc"
     "github.com/yylego/kratos-apm/apmkratos"
 )
 
@@ -145,9 +148,9 @@ func main() {
 package main
 
 import (
-    "github.com/go-kratos/kratos/v2"
-    "github.com/go-kratos/kratos/v2/transport/grpc"
-    "github.com/go-kratos/kratos/v2/transport/http"
+    "github.com/go-kratos/kratos/v3"
+    "github.com/go-kratos/kratos/v3/transport/grpc"
+    "github.com/go-kratos/kratos/v3/transport/http"
     "github.com/yylego/kratos-apm/apmkratos"
 )
 
@@ -239,11 +242,11 @@ package main
 import (
     "context"
 
-    "github.com/go-kratos/kratos/v2"
-    "github.com/go-kratos/kratos/v2/log"
-    "github.com/go-kratos/kratos/v2/middleware/recovery"
-    "github.com/go-kratos/kratos/v2/transport/grpc"
-    "github.com/go-kratos/kratos/v2/transport/http"
+    "github.com/go-kratos/kratos/v3"
+    "github.com/go-kratos/kratos/v3/log"
+    "github.com/go-kratos/kratos/v3/middleware/recovery"
+    "github.com/go-kratos/kratos/v3/transport/grpc"
+    "github.com/go-kratos/kratos/v3/transport/http"
     "github.com/yylego/elasticapm"
     "github.com/yylego/kratos-apm/apmkratos"
 )
@@ -431,7 +434,7 @@ func init() {
 
 ## 依赖项
 
-- `github.com/go-kratos/kratos/v2` - Kratos 微服务框架
+- `github.com/go-kratos/kratos/v3` - Kratos 微服务框架
 - `go.elastic.co/apm/v2` - Elastic APM Go Agent
 - `github.com/yylego/elasticapm` - APM 配置辅助包
 - `github.com/yylego/zaplog` - 日志工具

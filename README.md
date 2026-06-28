@@ -8,9 +8,11 @@
 # kratos-apm
 
 <!-- TEMPLATE (EN) BEGIN: LANGUAGE NAVIGATION -->
+
 ## CHINESE README
 
 [中文说明](README.zh.md)
+
 <!-- TEMPLATE (EN) END: LANGUAGE NAVIGATION -->
 
 Elastic APM middleware to integrate with Kratos framework, providing distributed tracing and performance monitoring.
@@ -26,6 +28,7 @@ Elastic APM middleware to integrate with Kratos framework, providing distributed
 ## Version
 
 This project uses Elastic APM v2:
+
 ```
 go.elastic.co/apm/v2
 ```
@@ -77,8 +80,8 @@ func main() {
 package main
 
 import (
-    "github.com/go-kratos/kratos/v2"
-    "github.com/go-kratos/kratos/v2/transport/http"
+    "github.com/go-kratos/kratos/v3"
+    "github.com/go-kratos/kratos/v3/transport/http"
     "github.com/yylego/kratos-apm/apmkratos"
 )
 
@@ -110,8 +113,8 @@ func main() {
 package main
 
 import (
-    "github.com/go-kratos/kratos/v2"
-    "github.com/go-kratos/kratos/v2/transport/grpc"
+    "github.com/go-kratos/kratos/v3"
+    "github.com/go-kratos/kratos/v3/transport/grpc"
     "github.com/yylego/kratos-apm/apmkratos"
 )
 
@@ -143,9 +146,9 @@ func main() {
 package main
 
 import (
-    "github.com/go-kratos/kratos/v2"
-    "github.com/go-kratos/kratos/v2/transport/grpc"
-    "github.com/go-kratos/kratos/v2/transport/http"
+    "github.com/go-kratos/kratos/v3"
+    "github.com/go-kratos/kratos/v3/transport/grpc"
+    "github.com/go-kratos/kratos/v3/transport/http"
     "github.com/yylego/kratos-apm/apmkratos"
 )
 
@@ -237,11 +240,11 @@ package main
 import (
     "context"
 
-    "github.com/go-kratos/kratos/v2"
-    "github.com/go-kratos/kratos/v2/log"
-    "github.com/go-kratos/kratos/v2/middleware/recovery"
-    "github.com/go-kratos/kratos/v2/transport/grpc"
-    "github.com/go-kratos/kratos/v2/transport/http"
+    "github.com/go-kratos/kratos/v3"
+    "github.com/go-kratos/kratos/v3/log"
+    "github.com/go-kratos/kratos/v3/middleware/recovery"
+    "github.com/go-kratos/kratos/v3/transport/grpc"
+    "github.com/go-kratos/kratos/v3/transport/http"
     "github.com/yylego/elasticapm"
     "github.com/yylego/kratos-apm/apmkratos"
 )
@@ -429,7 +432,7 @@ func init() {
 
 ## Dependencies
 
-- `github.com/go-kratos/kratos/v2` - Kratos microservice framework
+- `github.com/go-kratos/kratos/v3` - Kratos microservice framework
 - `go.elastic.co/apm/v2` - Elastic APM Go Agent
 - `github.com/yylego/elasticapm` - APM config helper
 - `github.com/yylego/zaplog` - Logging tool
