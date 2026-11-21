@@ -1,12 +1,3 @@
-// Package apmkratos provides advanced Elastic APM middleware integration with Kratos microservice framework
-// Implements enterprise-grade distributed tracing capabilities across gRPC and HTTP transport protocols
-// Combines intelligent request tracking with panic detection and reporting
-// Optimized through W3C TraceContext propagation standards enabling seamless cross-service tracing
-//
-// apmkratos 包为 Kratos 微服务框架提供高级 Elastic APM 中间件集成
-// 实现跨 gRPC 和 HTTP 传输协议的企业级分布式追踪功能
-// 结合智能请求追踪与自动 panic 检测和上报机制
-// 通过 W3C TraceContext 传播标准优化，实现无缝跨服务追踪
 package apmkratos
 
 import (
@@ -16,30 +7,28 @@ import (
 	"go.uber.org/zap"
 )
 
-// GetApmAgentVersion retrieves the Elastic APM agent version ID embedded within this package
-// Returns version string enabling APM agent version checks at application scope
-// Important when coordinating packages that depend on specific APM agent releases
+// ApmAgentVersion returns the version of the Elastic APM agent this package is built with
 //
-// 检索嵌入在此包中的 Elastic APM agent 版本标识符
-// 返回版本字符串，使应用程序级别能够验证 APM agent 兼容性
-// 在协调依赖特定 APM agent 发布的多个包时至关重要
-func GetApmAgentVersion() string {
+// ApmAgentVersion 返回本包编译时用的 Elastic APM agent 版本
+func ApmAgentVersion() string {
 	return apm.AgentVersion
 }
 
-// CheckApmAgentVersion validates version alignment between given version and package-embedded APM agent
-// Performs version checks across the whole package chain including nested modules
-// Returns false when version mismatch is detected to prevent runtime conflicts
+// CheckApmAgentVersion reports if the given version equals the APM agent version of this package and of elasticapm
+// A mismatch logs a warning and gives false
+// Pass the apm.AgentVersion of the agent package that the application imports, at startup:
+// it catches an application that imports the old go.elastic.co/apm (v1) while this package uses go.elastic.co/apm/v2
 //
-// 验证提供的版本与包嵌入的 APM agent 之间的版本对齐
-// 实现跨完整依赖链（包括嵌套模块）的全面兼容性验证
-// 检测到版本不匹配时返回 false，防止潜在的运行时不兼容性
+// CheckApmAgentVersion 检查传入的版本跟本包、以及 elasticapm 用的 APM agent 版本是否一致
+// 不一致时打一条告警并返回 false
+// 在启动时把应用自己引入的 agent 包的 apm.AgentVersion 传进来：
+// 应用引入的是旧的 go.elastic.co/apm（v1）、而本包用的是 go.elastic.co/apm/v2 时，就能查出来
 func CheckApmAgentVersion(version string) bool {
 	if agentVersion := apm.AgentVersion; version != agentVersion {
-		zaplog.LOGGER.LOG.Warn("check apm agent versions not match", zap.String("arg_version", version), zap.String("pkg_version", agentVersion))
+		zaplog.LOGGER.LOG.Warn("apm agent version mismatch", zap.String("arg_version", version), zap.String("pkg_version", agentVersion))
 		return false
 	}
-	// Check version alignment across the package chain
-	// 递归验证依赖模块链中的版本一致性
+	// elasticapm checks its own agent version too
+	// elasticapm 再检查它自己的 agent 版本
 	return elasticapm.CheckApmAgentVersion(version)
 }

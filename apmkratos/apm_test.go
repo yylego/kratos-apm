@@ -7,14 +7,13 @@ import (
 	"go.elastic.co/apm/v2"
 )
 
-// TestGetApmAgentVersion tests APM agent version access
-// 测试获取 APM agent 版本
-func TestGetApmAgentVersion(t *testing.T) {
-	t.Log(GetApmAgentVersion())
+func TestApmAgentVersion(t *testing.T) {
+	require.Equal(t, apm.AgentVersion, ApmAgentVersion())
 }
 
-// TestCheckApmAgentVersion tests APM version alignment check
-// 测试 APM 版本一致性检查
 func TestCheckApmAgentVersion(t *testing.T) {
 	require.True(t, CheckApmAgentVersion(apm.AgentVersion))
+	// 1.15.0 is a version of the old go.elastic.co/apm (v1) agent
+	// 1.15.0 是旧的 go.elastic.co/apm（v1）agent 的版本
+	require.False(t, CheckApmAgentVersion("1.15.0"))
 }
